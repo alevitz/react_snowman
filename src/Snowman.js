@@ -7,14 +7,19 @@ import img3 from "./3.png";
 import img4 from "./4.png";
 import img5 from "./5.png";
 import img6 from "./6.png";
+import {randomWord, ENGLISH_WORDS} from "./words";
+
 
 function Snowman({maxWrong, images, words}) {
   /** by default, allow 6 guesses and use provided gallows images. */
 
+ 
+
   const [nWrong, updateNWrong] = useState(0);
   const [guessed, updateGuessed] = useState(new Set());
-  const [answer, updateAnswer] = useState(words[0]);
+  const [answer, updateAnswer] = useState(randomWord(ENGLISH_WORDS));
 
+ 
   /** guessedWord: show current-state of word:
     if guessed letters are {a,p,e}, show "app_e" for "apple"
   */
