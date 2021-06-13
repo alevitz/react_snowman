@@ -19,6 +19,7 @@ function Snowman({maxWrong, images, words}) {
   const [guessed, updateGuessed] = useState(new Set());
   const [answer, updateAnswer] = useState(randomWord(ENGLISH_WORDS));
 
+  let current = answer.split("").map(ltr => guessed.has(ltr) ? ltr : "_").join("");
  
   function resetGame(){
     updateNWrong(0);
@@ -34,6 +35,7 @@ function Snowman({maxWrong, images, words}) {
       .split("")
       .map(ltr => (guessed.has(ltr) ? ltr : "_"));
   }
+
 
   /** handleGuest: handle a guessed letter:
       - add to guessed letters
@@ -69,7 +71,10 @@ function Snowman({maxWrong, images, words}) {
     <div className="Snowman">
       <img src={images[nWrong]}/>
       <div>Number wrong: {nWrong}</div>
-      
+      {current === answer ?
+      <div>You win!</div>
+       :
+      <div> 
       {nWrong === maxWrong ? 
       <div>
       <p>You lose</p>
@@ -79,6 +84,8 @@ function Snowman({maxWrong, images, words}) {
       <div>
       <p className="Snowman-word">{guessedWord()}</p>
       <p>{generateButtons()}</p>
+      </div>
+      }
       </div>
       }
       <button
