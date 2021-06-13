@@ -20,6 +20,12 @@ function Snowman({maxWrong, images, words}) {
   const [answer, updateAnswer] = useState(randomWord(ENGLISH_WORDS));
 
  
+  function resetGame(){
+    updateNWrong(0);
+    updateGuessed(new Set());
+    updateAnswer(randomWord(ENGLISH_WORDS));
+  }
+
   /** guessedWord: show current-state of word:
     if guessed letters are {a,p,e}, show "app_e" for "apple"
   */
@@ -75,6 +81,9 @@ function Snowman({maxWrong, images, words}) {
       <p>{generateButtons()}</p>
       </div>
       }
+      <button
+      onClick={resetGame}
+      >Reset Game</button>
     </div>
   );
 }
